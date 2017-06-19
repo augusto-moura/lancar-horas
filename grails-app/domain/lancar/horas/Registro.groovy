@@ -4,13 +4,14 @@ import org.joda.time.DateTime
 
 class Registro {
 
-    static belongsTo = [funcionario: Funcionario]
+    static belongsTo = [usuario: Usuario]
 
     static mapping = {
-        table 'REGISTRO'
+        table 'REGISTROS'
         id column: 'ID_REGISTRO'
+        version false
 
-        funcionario column: 'ID_FUNCIONARIO'
+        usuario column: 'ID_USUARIO'
         dateCreated column: 'DT_HORA_MARCADA'
     }
 

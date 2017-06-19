@@ -1,20 +1,27 @@
 package lancar.horas
 
-class Pessoa {
+class Usuario {
 
-    private static final int[] PESOS_CPF = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+    private static final int[] PESOS_CPF = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
+
+    static hasMany = [registros: Registro]
 
     static constraints = {
-        cpf validator: { isCPFValido(it.replaceAll(/[.-]/, '')) }, matches: /\d{3}\.\d{3}\.\d{3}-\d{2}/
+        cpf matches: /\d{3}\.\d{3}\.\d{3}-\d{2}/, validator: {
+            return isCPFValido(it.replaceAll(/[.-]/, ''))
+        }
     }
 
     static mapping = {
-        table 'PESSOA'
-        id column: 'ID_PESSOA'
+        table 'USUARIOS'
+        id column: 'ID_USUARIO'
+        version false
 
-        nome column: 'DS_NOME'
-        cpf column: 'DS_CPF'
+        nome blank: false, column: 'DS_NOME'
+        cpf blank: false, column: 'DS_CPF'
         dataNascimento column: 'DT_NASCIMENTO'
+        papel nullable: false, column: 'IN_PAPEL'
+        senha blank: false, column: 'DS_SENHA'
     }
 
     private static int calcularDigito(String str, int[] peso) {
@@ -38,9 +45,13 @@ class Pessoa {
 
     String nome
     String cpf
+    String senha
     Date dataNascimento
+    RolesFuncionario papel
 
+    @Override
     String toString() {
         return "$nome - $cpf"
     }
+
 }
