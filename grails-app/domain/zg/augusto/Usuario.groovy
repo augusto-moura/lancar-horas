@@ -41,19 +41,24 @@ class Usuario {
     private static int calcularDigito(String str, int[] peso) {
         int soma = 0
         int digito
+
         for (int indice = str.length() - 1; indice >= 0; indice--) {
             digito = Integer.parseInt(str.substring(indice, indice + 1))
             soma += digito * peso[peso.length - str.length() + indice]
         }
+
         soma = 11 - soma % 11
         return soma > 9 ? 0 : soma
     }
 
     private static boolean isCPFValido(String cpf) {
-        if ((cpf==null) || (cpf.length()!=11)) return false
+        if (cpf == null || cpf.length() != 11) {
+            return false
+        }
 
         Integer digito1 = calcularDigito(cpf.substring(0,9), PESOS_CPF)
         Integer digito2 = calcularDigito(cpf.substring(0,9) + digito1, PESOS_CPF)
+
         return cpf == (cpf.substring(0,9) + digito1.toString() + digito2.toString())
     }
 

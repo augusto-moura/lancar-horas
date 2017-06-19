@@ -12,7 +12,7 @@ class LancamentosController {
         def orderby = params.orderby ?: 'id'
         def asc = params.asc
 
-        def resultado = new ConsultaMultipla<Registro>(
+        def wrapper = new ConsultaMultipla<Registro>(
             resultados: Registro.withCriteria {
                 firstResult offset
                 order orderby, asc ? 'asc' : 'desc'
@@ -25,7 +25,10 @@ class LancamentosController {
             offset: offset,
         )
 
-        render(resultado as JSON)
+        def resposta = wrapper as JSON
+        resposta.excludes = ['usuario.registros']
+
+        render resposta
     }
 
 }
