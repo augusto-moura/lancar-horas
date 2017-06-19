@@ -1,4 +1,4 @@
-package lancar.horas
+package zg.augusto
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification

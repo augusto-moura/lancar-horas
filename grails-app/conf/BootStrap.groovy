@@ -1,5 +1,6 @@
-import lancar.horas.RolesFuncionario
-import lancar.horas.Usuario
+import zg.augusto.Registro
+import zg.augusto.dominio.enums.RolesFuncionario
+import zg.augusto.Usuario
 
 class BootStrap {
 
@@ -13,6 +14,19 @@ class BootStrap {
         )
 
         augusto.save()
+
+        def registroFoo = new Registro(usuario: augusto)
+        registroFoo.save()
+
+        sleep(1000)
+
+        def registroBar = new Registro(usuario: augusto)
+        registroBar.save()
+
+        sleep(1000)
+
+        def registroQuux = new Registro(usuario: augusto)
+        registroQuux.save()
     }
 
     def destroy = {

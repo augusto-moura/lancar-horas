@@ -1,6 +1,4 @@
-package lancar.horas
-
-import org.joda.time.DateTime
+package zg.augusto
 
 class Registro {
 
@@ -11,7 +9,7 @@ class Registro {
         id column: 'ID_REGISTRO'
         version false
 
-        usuario column: 'ID_USUARIO'
+        usuario column: 'ID_USUARIO', lazy: false
         dateCreated column: 'DT_HORA_MARCADA'
     }
 

@@ -1,4 +1,6 @@
-package lancar.horas
+package zg.augusto
+
+import zg.augusto.dominio.enums.RolesFuncionario
 
 class Usuario {
 
@@ -22,6 +24,18 @@ class Usuario {
         dataNascimento column: 'DT_NASCIMENTO'
         papel nullable: false, column: 'IN_PAPEL'
         senha blank: false, column: 'DS_SENHA'
+        registros lazy: false
+    }
+
+    String nome
+    String cpf
+    String senha
+    Date dataNascimento
+    RolesFuncionario papel
+
+    @Override
+    String toString() {
+        return "$nome - $cpf"
     }
 
     private static int calcularDigito(String str, int[] peso) {
@@ -41,17 +55,6 @@ class Usuario {
         Integer digito1 = calcularDigito(cpf.substring(0,9), PESOS_CPF)
         Integer digito2 = calcularDigito(cpf.substring(0,9) + digito1, PESOS_CPF)
         return cpf == (cpf.substring(0,9) + digito1.toString() + digito2.toString())
-    }
-
-    String nome
-    String cpf
-    String senha
-    Date dataNascimento
-    RolesFuncionario papel
-
-    @Override
-    String toString() {
-        return "$nome - $cpf"
     }
 
 }
