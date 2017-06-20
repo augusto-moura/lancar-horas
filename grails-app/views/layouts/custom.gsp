@@ -20,16 +20,25 @@
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
-			<li><g:link controller="usuarios" action="listar">Usuários</g:link></li>
+			<li class="${controllerName == 'usuarios' ? 'active' : ''}">
+				<g:link controller="usuarios" action="listar">Usuários</g:link>
+			</li>
+			<li class="${controllerName == 'pontos' && actionName == 'bater-ponto' ? 'active' : ''}">
+				<g:link controller="pontos" action="bater-ponto">Bater ponto</g:link>
+			</li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href=""><i class="glyphicon glyphicon-wrench"></i> Configurações</a></li>
 		</ul>
-	</div><!-- /.container-fluid -->
+	</div>
 </nav>
 
 <main class="container-fluid">
+	<g:each in="${params.errors}">
+		<div class="alert alert-danger" role="alert">${it}</div>
+	</g:each>
+
 	<g:layoutBody/>
 </main>
 

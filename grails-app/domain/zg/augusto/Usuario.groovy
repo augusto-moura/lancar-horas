@@ -24,6 +24,7 @@ class Usuario {
         dataNascimento column: 'DT_NASCIMENTO'
         papel nullable: false, column: 'IN_PAPEL'
         senha blank: false, column: 'DS_SENHA'
+        salario column: 'salario', nullable: false
         registros lazy: false
     }
 
@@ -32,6 +33,7 @@ class Usuario {
     String senha
     Date dataNascimento
     RolesFuncionario papel
+    BigDecimal salario
 
     @Override
     String toString() {

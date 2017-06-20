@@ -41,11 +41,22 @@ class PontosController {
         render(registro as JSON)
     }
 
-    def editar() {
+    def editar(Registro registro) {
+        if (registro.hasErrors()) {
+            return [
+                errors: registro.errors,
+            ]
+        }
+
+        if (registro && registro.id) {
+            registro.save()
+        }
+
+        return [entidade: registro]
+    }
+
+    def 'exibir-edicao'() {
         return [entidade: Registro.read(params.id as Long)]
     }
 
-    def alterar(Registro registro) {
-        return [registroPersistido: registro]
-    }
 }

@@ -8,13 +8,10 @@
 </head>
 
 <body>
-<g:form class="form-inline" controller="pontos" action="alterar">
+<g:form name="formEdicao" class="form-inline" controller="pontos" action="editar" id="${params.id}">
 	<div class="form-group">
 		<label for="input-data">Nova data:</label>
-		<input class="form-control"
-			   id="input-data"
-			   name="dateCreated"
-			   type="datetime-local"
+		<input class="form-control" id="input-data" name="params.dateCreated" type="datetime-local"
 			   value="${new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(entidade.dataMarcada)}"/>
 	</div>
 

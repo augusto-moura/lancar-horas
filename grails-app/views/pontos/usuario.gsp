@@ -10,7 +10,7 @@
 <table class="table table-striped table-hover table-bordered minimun-width-table">
 	<thead>
 	<tr>
-		<th>Data Hora</th>
+		<th>Data Marcada</th>
 		<th>Nome Usuário</th>
 		<th>Ações</th>
 	</tr>
@@ -19,11 +19,11 @@
 	<tbody>
 	<g:each in="${resultado}">
 		<tr>
-			<td>${it.dateCreated}</td>
+			<td>${it.dataMarcada}</td>
 			<td>${it.usuario.nome}</td>
 			<td class="text-center">
-				<g:link controller="pontos" action="editar" id="${it.id}">
-					<i class="glyphicon glyphicon-pencil"></i>
+				<g:link controller="pontos" action="exibir-edicao" id="${it.id}">
+					<i class="glyphicon glyphicon-pencil" title="Editar ponto"></i>
 				</g:link>
 			</td>
 		</tr>
