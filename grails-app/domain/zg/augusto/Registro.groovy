@@ -10,9 +10,15 @@ class Registro {
         version false
 
         usuario column: 'ID_USUARIO', lazy: false
-        dateCreated column: 'DT_HORA_MARCADA'
+        dataMarcada column: 'DT_HORA_MARCADA'
+        dateCreated column: 'DT_CRIACAO'
     }
 
+    Date dataMarcada = new Date()
     Date dateCreated
+
+    def beforeInsert() {
+        dataMarcada = new Date()
+    }
 
 }

@@ -115,3 +115,8 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Personalizado
+grails.resources.adhoc.includes = [
+    '/images/**', '/stylesheets/**', '/javascripts/**', '/fonts/**'
+]
