@@ -21,6 +21,7 @@
 	<tr>
 		<th>Nome</th>
 		<th>CPF</th>
+		<th>Salário</th>
 		<th>Data nascimento</th>
 		<th>Ações</th>
 	</tr>
@@ -34,6 +35,7 @@
 			<tr>
 				<td>${it.nome}</td>
 				<td>${it.cpf}</td>
+				<td>R$ ${it.salarioFormatado}</td>
 				<td>${it.dataNascimento}</td>
 				<td class="text-center">
 					<g:link controller="pontos" action="usuario" id="${it.id}">

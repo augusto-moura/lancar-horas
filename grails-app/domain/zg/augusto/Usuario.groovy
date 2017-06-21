@@ -2,9 +2,13 @@ package zg.augusto
 
 import zg.augusto.dominio.enums.RolesFuncionario
 
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+
 class Usuario {
 
     private static final int[] PESOS_CPF = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
+    private static final DecimalFormat FORMATO_SALARIO = new DecimalFormat('#,##0.00', DecimalFormatSymbols.getInstance(new Locale('pt', 'BR')))
 
     static hasMany = [registros: Registro]
 
@@ -34,6 +38,10 @@ class Usuario {
     Date dataNascimento
     RolesFuncionario papel
     BigDecimal salario
+
+    String getSalarioFormatado() {
+        return FORMATO_SALARIO.format(salario)
+    }
 
     @Override
     String toString() {

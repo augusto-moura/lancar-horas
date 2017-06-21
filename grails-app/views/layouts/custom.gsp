@@ -35,8 +35,12 @@
 </nav>
 
 <main class="container-fluid">
-	<g:each in="${params.errors}">
+	<g:each in="${flash.errors}">
 		<div class="alert alert-danger" role="alert">${it}</div>
+	</g:each>
+
+	<g:each in="${flash.success}">
+		<div class="alert alert-success">${it}</div>
 	</g:each>
 
 	<g:layoutBody/>

@@ -11,7 +11,7 @@
 	<thead>
 	<tr>
 		<th>Data Marcada</th>
-		<th>Nome Usuário</th>
+		<th>Usuário</th>
 		<th>Ações</th>
 	</tr>
 	</thead>
