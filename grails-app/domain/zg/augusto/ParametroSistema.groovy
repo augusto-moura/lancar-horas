@@ -2,6 +2,9 @@ package zg.augusto
 
 class ParametroSistema {
 
+    static final String CHAVE_PARAMETRO_ADICIONAL_NOTURNO = 'ADICIONAL_NOTURNO'
+    static final String CHAVE_PARAMETRO_ADICIONAL_FERIADO = 'ADICIONAL_FERIADO'
+
     static mapping = {
         table 'PARAMETROS_SISTEMA'
         id column: 'ID_PARAMETRO_SISTEMA'
