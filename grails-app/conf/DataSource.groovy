@@ -20,6 +20,7 @@ environments {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/lancarhoras_dev?autoreconnect=true"
+            logSql = true
         }
     }
     test {
