@@ -6,7 +6,7 @@ import zg.augusto.Usuario
 class BootStrap {
 
     def init = { servletContext ->
-        def augusto = new Usuario(
+        def alguem = new Usuario(
             nome: 'Joao',
             cpf: '600.043.680-70',
             dataNascimento: new Date(97, 8, 27),
@@ -15,19 +15,19 @@ class BootStrap {
             papel: RolesFuncionario.ADMIN,
         )
 
-        augusto.save()
+        alguem.save()
 
-        def registroFoo = new Registro(usuario: augusto)
+        def registroFoo = new Registro(usuario: alguem)
         registroFoo.save()
 
         sleep(1000)
 
-        def registroBar = new Registro(usuario: augusto)
+        def registroBar = new Registro(usuario: alguem)
         registroBar.save()
 
         sleep(1000)
 
-        def registroQuux = new Registro(usuario: augusto)
+        def registroQuux = new Registro(usuario: alguem)
         registroQuux.save()
     }
 
