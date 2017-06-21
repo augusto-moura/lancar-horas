@@ -2,10 +2,15 @@ package zg.augusto
 
 import grails.converters.JSON
 import org.hibernate.FetchMode
+import org.joda.time.LocalDateTime
 import org.springframework.http.HttpStatus
 import zg.augusto.dominio.serializacao.ConsultaMultipla
 
+import javax.transaction.Transactional
+
 class PontosController {
+
+    RegistrosService registrosService
 
     def usuario() {
         def offset = Math.max(params.offset ? params.int('offset') : 0, 0)
@@ -41,18 +46,17 @@ class PontosController {
         render(registro as JSON)
     }
 
-    def editar(Registro registro) {
+    def 'editar-data-marcada'() {
+        def id = params.id as Long
+        def registro = registrosService.alterarDataMarcada(new LocalDateTime(params.dataMarcada as String).toDate(), id)
+
         if (registro.hasErrors()) {
-            return [
-                errors: registro.errors,
-            ]
+            flash.errors = registro.errors
+            redirect(action: 'exibir-edicao', id: id)
         }
 
-        if (registro && registro.id) {
-            registro.save()
-        }
-
-        return [entidade: registro]
+        flash.success = ['Edição realizada com sucesso!']
+        render(view: 'exibir-edicao', model: [entidade: registro])
     }
 
     def 'exibir-edicao'() {
