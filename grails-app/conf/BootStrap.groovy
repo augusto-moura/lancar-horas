@@ -5,15 +5,13 @@ import zg.augusto.Usuario
 
 class BootStrap {
 
-    private static Logger LOGGER = Logger.getLogger(BootStrap)
-
     def init = { servletContext ->
         def augusto = new Usuario(
-            nome: 'Augusto',
-            cpf: '701.064.191-96',
+            nome: 'Joao',
+            cpf: '600.043.680-70',
             dataNascimento: new Date(97, 8, 27),
             senha: '012345',
-            salario: 11_0000.0,
+            salario: 10_000.0,
             papel: RolesFuncionario.ADMIN,
         )
 
