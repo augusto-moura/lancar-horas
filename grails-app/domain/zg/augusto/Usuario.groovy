@@ -20,15 +20,13 @@ class Usuario {
 
     static mapping = {
         table 'USUARIOS'
-        id column: 'ID_USUARIO'
         version false
 
-        nome blank: false, column: 'DS_NOME'
-        cpf blank: false, column: 'DS_CPF'
-        dataNascimento column: 'DT_NASCIMENTO'
-        papel nullable: false, column: 'IN_PAPEL'
-        senha blank: false, column: 'DS_SENHA'
-        salario column: 'salario', nullable: false
+        nome blank: false
+        cpf blank: false
+        papel nullable: false
+        senha blank: false
+        salario nullable: false
         registros lazy: false
     }
 

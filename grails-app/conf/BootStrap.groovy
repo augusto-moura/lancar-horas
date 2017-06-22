@@ -7,7 +7,7 @@ class BootStrap {
 
     def init = { servletContext ->
         def alguem = new Usuario(
-            nome: 'Joao',
+            nome: 'João',
             cpf: '600.043.680-70',
             dataNascimento: new Date(97, 8, 27),
             senha: '012345',

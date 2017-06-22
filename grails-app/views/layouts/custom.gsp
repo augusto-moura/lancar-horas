@@ -19,13 +19,14 @@
 <body>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
+		<div class="navbar-header">
+			<g:link uri="/" class="navbar-brand">ZeroPontos</g:link>
+		</div>
+
 		<ul class="nav navbar-nav">
-			<li class="${controllerName == 'usuarios' ? 'active' : ''}">
-				<g:link controller="usuarios" action="listar">Usuários</g:link>
-			</li>
-			<li class="${controllerName == 'pontos' && actionName == 'bater-ponto' ? 'active' : ''}">
-				<g:link controller="pontos" action="bater-ponto">Bater ponto</g:link>
-			</li>
+			<li><g:link controller="usuarios" action="listar" class="zg-link">Usuários</g:link></li>
+			<li><g:link controller="registros" action="exibir-bater-ponto" class="zg-link">Bater ponto</g:link></li>
+			<li><g:link controller="requisicoesMudancaRegistro" action="exibir-requisicao-mudancas-ponto" class="zg-link">Requisições de mudança de ponto</g:link></li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">

@@ -13,4 +13,10 @@ class RegistrosService {
 
         return registro
     }
+
+    def baterPonto(Usuario user) {
+        def rezistro = new Registro(usuario: user)
+        return rezistro.save()
+    }
+
 }

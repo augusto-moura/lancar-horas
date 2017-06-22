@@ -29,7 +29,7 @@
 
 	<tbody>
 		<g:if test="${resultado.size() < 1}">
-			<tr><td colspan="4">Nenhum resultado encontrado</td></tr>
+			<tr><td colspan="5">Nenhum resultado encontrado</td></tr>
 		</g:if>
 		<g:each in="${resultado}">
 			<tr>
@@ -38,10 +38,10 @@
 				<td>R$ ${it.salarioFormatado}</td>
 				<td>${it.dataNascimento}</td>
 				<td class="text-center">
-					<g:link controller="pontos" action="usuario" id="${it.id}">
+					<g:link controller="registros" action="usuario" id="${it.id}">
 						<i class="glyphicon glyphicon-th-list" title="Verificar pontos marcados"></i>
 					</g:link>
-					<g:link controller="pontos" action="mostrar-relatorios" id="${it.id}">
+					<g:link controller="registros" action="mostrar-relatorios" id="${it.id}">
 						<i class="glyphicon glyphicon-list-alt" title="Mostrar relatórios"></i>
 					</g:link>
 				</td>

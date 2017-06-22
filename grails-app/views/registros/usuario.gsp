@@ -22,7 +22,7 @@
 			<td>${it.dataMarcada}</td>
 			<td>${it.usuario.nome}</td>
 			<td class="text-center">
-				<g:link controller="pontos" action="exibir-edicao" id="${it.id}">
+				<g:link controller="registros" action="exibir-edicao" id="${it.id}">
 					<i class="glyphicon glyphicon-pencil" title="Editar ponto"></i>
 				</g:link>
 			</td>

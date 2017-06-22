@@ -8,7 +8,7 @@ import zg.augusto.dominio.serializacao.ConsultaMultipla
 
 import javax.transaction.Transactional
 
-class PontosController {
+class RegistrosController {
 
     RegistrosService registrosService
 
@@ -62,5 +62,14 @@ class PontosController {
     def 'exibir-edicao'() {
         return [entidade: Registro.read(params.id as Long)]
     }
+
+    def 'bater-ponto'() {
+        def usuarioAtual = Usuario.get(1)
+        registrosService.baterPonto(usuarioAtual)
+        redirect(url: '/')
+    }
+
+    def 'exibir-bater-ponto'() {}
+
 
 }
