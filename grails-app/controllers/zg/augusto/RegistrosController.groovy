@@ -83,4 +83,18 @@ class RegistrosController {
     @Secured(['ROLE_USER'])
     def 'exibir-bater-ponto'() {}
 
+    @Secured(['ROLE_USER'])
+    def 'meus-registros'() {
+        def grailsuser = springSecurityService.principal as GrailsUser
+
+        def resultado = Registro.withCriteria {
+            eq 'usuario.id', (grailsuser.id as Long)
+        }
+
+        return [
+            registros: resultado,
+            idUsuario: grailsuser.id,
+        ]
+    }
+
 }
