@@ -18,7 +18,7 @@
 	<button class="btn btn-primary" type="submit">Buscar</button>
 </g:form>
 
-<table class="table table-striped table-hover table-bordered minimun-width-table">
+<table class="table table-striped table-hover table-bordered">
 	<thead>
 	<tr>
 		<th>Nome</th>

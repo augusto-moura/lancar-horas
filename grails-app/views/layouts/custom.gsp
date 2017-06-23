@@ -22,11 +22,11 @@
 		</div>
 
 		<ul class="nav navbar-nav">
+			<li><g:link controller="registros" action="exibir-bater-ponto" class="zg-link">Bater ponto</g:link></li>
+			<li><g:link controller="registros" action="meus-registros" class="zg-link">Minhas marcações</g:link></li>
 			<sec:ifAllGranted roles="ROLE_ADMIN">
 				<li><g:link controller="usuarios" action="listar" class="zg-link">Usuários</g:link></li>
 			</sec:ifAllGranted>
-			<li><g:link controller="registros" action="exibir-bater-ponto" class="zg-link">Bater ponto</g:link></li>
-			<li><g:link controller="requisicoesMudancaRegistro" action="exibir-requisicao-mudancas-ponto" class="zg-link">Requisições de mudança de ponto</g:link></li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
@@ -36,16 +36,18 @@
 	</div>
 </nav>
 
-<main class="container-fluid">
+<main class="container-fluid zg-principal">
 	<g:each in="${flash.errors}">
-		<div class="alert alert-danger" role="alert">${it}</div>
+		<div class="alert alert-danger overflow-auto" role="alert">${it}</div>
 	</g:each>
 
 	<g:each in="${flash.success}">
-		<div class="alert alert-success">${it}</div>
+		<div class="alert alert-success overflow-auto">${it}</div>
 	</g:each>
 
-	<g:layoutBody/>
+	<div>
+		<g:layoutBody/>
+	</div>
 </main>
 
 <footer class="footer" role="contentinfo"></footer>

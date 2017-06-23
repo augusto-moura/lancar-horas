@@ -8,7 +8,7 @@
 
 <body>
 <h4 class="spacing-bottom">Registros de ${usuario.nome}</h4>
-<table class="table table-striped table-hover table-bordered minimun-width-table">
+<table class="table table-striped table-hover table-bordered">
 	<thead>
 	<tr>
 		<th>Data Criação Inicial</th>
@@ -18,6 +18,11 @@
 	</thead>
 
 	<tbody>
+	<g:if test="${!resultado}">
+		<tr>
+			<td colspan="3">Nenhum resultado encontrado</td>
+		</tr>
+	</g:if>
 
 	<g:each in="${resultado}">
 		<tr>

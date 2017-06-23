@@ -1,3 +1,7 @@
+.overflow-auto {
+    overflow: auto;
+}
+
 table.table.minimun-width-table {
     width: auto;
 }
@@ -8,4 +12,12 @@ table.table.minimun-width-table {
 
 .spacing-bottom {
     margin-bottom: 1em;
+}
+
+textarea.zg-textarea {
+    resize: vertical;
+}
+
+main.zg-principal {
+    max-width: 60em;
 }
