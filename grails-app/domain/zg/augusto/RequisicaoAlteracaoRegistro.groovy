@@ -10,6 +10,8 @@ class RequisicaoAlteracaoRegistro {
     }
 
     static constraints = {
+        dataMudanca nullable: false
+        justificativa blank: false
     }
 
     String justificativa
