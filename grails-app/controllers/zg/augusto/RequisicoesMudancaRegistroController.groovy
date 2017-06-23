@@ -5,6 +5,8 @@ import org.joda.time.DateTime
 
 class RequisicoesMudancaRegistroController {
 
+    def requisacaoAlteracaoRegistroService
+
     @Secured(['ROLE_USER'])
     def 'exibir-nova-requisicao'() {
         return [
@@ -14,19 +16,24 @@ class RequisicoesMudancaRegistroController {
 
     @Secured(['ROLE_USER'])
     def 'nova-requisicao'() {
-        def requisicao = new RequisicaoAlteracaoRegistro(
-            justificativa: params.justificativa,
-            dataMudanca: new DateTime(params.dataMudanca as String).toDate(),
+        def requisicao = requisacaoAlteracaoRegistroService.novaRequisicao(
+            Registro.load(params.id as Long),
+            new DateTime(params.dataMudanca as String).toDate(),
+            params.justificativa as String,
         )
 
         if (requisicao.hasErrors()) {
             flash.errors = requisicao.errors
         } else {
             flash.success = ['Solicitação criada com sucesso!']
-            requisicao.save()
         }
 
         redirect(controller: 'registros', action: 'meus-registros')
+    }
+
+    @Secured(['ROLE_ADMIN'])
+    def 'listar-requisicoes'() {
+        return [requisicoes: RequisicaoAlteracaoRegistro.findAll()]
     }
 
 }

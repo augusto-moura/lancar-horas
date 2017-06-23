@@ -26,6 +26,11 @@
 			<li><g:link controller="registros" action="meus-registros" class="zg-link">Minhas marcações</g:link></li>
 			<sec:ifAllGranted roles="ROLE_ADMIN">
 				<li><g:link controller="usuarios" action="listar" class="zg-link">Usuários</g:link></li>
+				<li>
+					<g:link controller="requisicoesMudancaRegistro" action="listar-requisicoes" class="zg-link">
+						Requisições Mudança de Ponto
+					</g:link>
+				</li>
 			</sec:ifAllGranted>
 		</ul>
 

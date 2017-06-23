@@ -21,3 +21,7 @@ textarea.zg-textarea {
 main.zg-principal {
     max-width: 60em;
 }
+
+.align-middle {
+    vertical-align: middle;
+}

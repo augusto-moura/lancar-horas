@@ -11,15 +11,16 @@
 	<div id="clock" class="lead"></div>
 	<button class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-time"></i> Bater ponto</button>
 </g:form>
-<script>
-    const global = window.global || window;
-    const refreshClock = () => {
-        document.getElementById('clock').innerHTML = new Date().toLocaleString();
-    };
 
-    const clockIntervalId = global.document.addEventListener('DOMContentLoaded', () => {
+<script>
+    window.document.addEventListener('DOMContentLoaded', () => {
+        const clock = document.getElementById('clock');
+        const refreshClock = () => {
+            clock.innerHTML = new Date().toLocaleString();
+        };
+
         refreshClock();
-        global.setInterval(refreshClock, 1000);
+        window.setInterval(refreshClock, 1000);
     });
 </script>
 </body>

@@ -77,7 +77,7 @@ class RegistrosController {
         registrosService.baterPonto(usuarioAtual)
 
         flash.success = ['Ponto registrado com sucesso!']
-        render(view: '/home')
+        redirect(action: 'meus-registros')
     }
 
     @Secured(['ROLE_USER'])
