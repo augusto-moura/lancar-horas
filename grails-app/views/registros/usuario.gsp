@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<h4 class="spacing-bottom">Registros de ${usuario.nome}</h4>
 <table class="table table-striped table-hover table-bordered minimun-width-table">
 	<thead>
 	<tr>
@@ -17,6 +18,7 @@
 	</thead>
 
 	<tbody>
+
 	<g:each in="${resultado}">
 		<tr>
 			<td>${it.dateCreated}</td>

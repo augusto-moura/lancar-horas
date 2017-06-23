@@ -20,7 +20,7 @@ class RegistrosController {
         def asc = params.asc
 
         def resultado = Registro.withCriteria {
-            eq 'usuario.id', Long.valueOf(params.id as String)
+            eq 'usuario.id', (params.id as Long)
 
             firstResult offset
             maxResults max
@@ -33,6 +33,7 @@ class RegistrosController {
             ordernadoPor: orderby,
             maximo: max,
             offset: offset,
+            usuario: Usuario.get(params.id as Long)
         ]
     }
 

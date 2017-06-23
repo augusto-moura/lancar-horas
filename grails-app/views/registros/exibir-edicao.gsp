@@ -8,6 +8,8 @@
 </head>
 
 <body>
+<h4 class="spacing-bottom">Editar registro</h4>
+
 <g:form name="formEdicao" class="form-inline" controller="registros" action="editar-data-marcada" id="${params.id}">
 	<div class="form-group">
 		<label for="input-data">Nova data:</label>

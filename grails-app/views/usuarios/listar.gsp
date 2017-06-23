@@ -7,6 +7,8 @@
 </head>
 
 <body>
+<h4 class="spacing-bottom">Todos usuários</h4>
+
 <g:form class="form-inline spacing-bottom">
 	<div class="form-group">
 		<label for="input-buscar-nome">Buscar por nome:</label>
