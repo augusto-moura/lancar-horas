@@ -1,17 +1,16 @@
 package zg.augusto
 
 import grails.converters.JSON
-import org.hibernate.FetchMode
+import grails.plugin.springsecurity.annotation.Secured
 import org.joda.time.LocalDateTime
 import org.springframework.http.HttpStatus
-import zg.augusto.dominio.serializacao.ConsultaMultipla
-
-import javax.transaction.Transactional
+import zg.augusto.dominio.enums.RolesUsuario
 
 class RegistrosController {
 
     RegistrosService registrosService
 
+    @Secured(['ROLE_ADMIN'])
     def usuario() {
         def offset = Math.max(params.offset ? params.int('offset') : 0, 0)
         def max = Math.min(params.max ? params.int('max') : 0, 100)
@@ -35,6 +34,7 @@ class RegistrosController {
         ]
     }
 
+    @Secured(['ROLE_ADMIN'])
     def salvarPonto(Registro registro) {
         if (registro.hasErrors()) {
             render(status: HttpStatus.BAD_REQUEST.value(), text: [
@@ -46,6 +46,7 @@ class RegistrosController {
         render(registro as JSON)
     }
 
+    @Secured(['ROLE_ADMIN'])
     def 'editar-data-marcada'() {
         def id = params.id as Long
         def registro = registrosService.alterarDataMarcada(new LocalDateTime(params.dataMarcada as String).toDate(), id)
@@ -59,17 +60,19 @@ class RegistrosController {
         render(view: 'exibir-edicao', model: [entidade: registro])
     }
 
+    @Secured(['ROLE_ADMIN'])
     def 'exibir-edicao'() {
         return [entidade: Registro.read(params.id as Long)]
     }
 
+    @Secured(['ROLE_USER'])
     def 'bater-ponto'() {
         def usuarioAtual = Usuario.get(1)
         registrosService.baterPonto(usuarioAtual)
         redirect(url: '/')
     }
 
+    @Secured(['ROLE_USER'])
     def 'exibir-bater-ponto'() {}
-
 
 }

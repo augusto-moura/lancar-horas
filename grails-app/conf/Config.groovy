@@ -121,3 +121,22 @@ log4j.main = {
 grails.resources.adhoc.includes = [
     '/images/**', '/stylesheets/**', '/javascripts/**', '/fonts/**'
 ]
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'zg.augusto.SecUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'zg.augusto.SecUserSecRole'
+grails.plugin.springsecurity.authority.className = 'zg.augusto.SecRole'
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                ['permitAll'],
+	'/index':           ['permitAll'],
+	'/home':            ['IS_AUTHENTICATED_REMEMBERED'],
+	'/index.gsp':       ['permitAll'],
+	'/assets/**':       ['permitAll'],
+	'/**/js/**':        ['permitAll'],
+	'/**/css/**':       ['permitAll'],
+	'/**/images/**':    ['permitAll'],
+	'/**/favicon.ico':  ['permitAll']
+]
+

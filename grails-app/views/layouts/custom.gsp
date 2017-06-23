@@ -31,6 +31,7 @@
 
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href=""><i class="glyphicon glyphicon-wrench"></i> Configurações</a></li>
+			<li><g:link controller="logout"><i class="glyphicon glyphicon-off"></i> Sair</g:link></li>
 		</ul>
 	</div>
 </nav>

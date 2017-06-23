@@ -1,11 +1,12 @@
 package zg.augusto
 
+import groovy.transform.CompileStatic
 import zg.augusto.dominio.enums.RolesFuncionario
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
-class Usuario {
+class Usuario extends SecUser {
 
     private static final int[] PESOS_CPF = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
     private static final DecimalFormat FORMATO_SALARIO = new DecimalFormat('#,##0.00', DecimalFormatSymbols.getInstance(new Locale('pt', 'BR')))
@@ -24,17 +25,13 @@ class Usuario {
 
         nome blank: false
         cpf blank: false
-        papel nullable: false
-        senha blank: false
         salario nullable: false
         registros lazy: false
     }
 
     String nome
     String cpf
-    String senha
     Date dataNascimento
-    RolesFuncionario papel
     BigDecimal salario
 
     String getSalarioFormatado() {

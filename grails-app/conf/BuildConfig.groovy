@@ -33,10 +33,10 @@ grails.project.dependency.resolution = {
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
     repositories {
-        inherits true // Whether to inherit repository definitions from plugins
+        inherits 'true' // Whether to inherit repository definitions from plugins
 
         grailsPlugins()
-        grailsHome()
+        grailsHome
         mavenLocal()
         grailsCentral()
         mavenCentral()
@@ -69,6 +69,7 @@ grails.project.dependency.resolution = {
 
         compile "org.grails.plugins:joda-time:1.5"
         compile "org.grails.plugins:mysql-connectorj:5.1.22.1"
+        compile "org.grails.plugins:spring-security-core:2.0.0"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"

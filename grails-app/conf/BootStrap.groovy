@@ -1,34 +1,58 @@
-import org.apache.log4j.Logger
+import grails.util.Environment
 import zg.augusto.Registro
-import zg.augusto.dominio.enums.RolesFuncionario
+import zg.augusto.SecUserSecRole
+import zg.augusto.SecRole
 import zg.augusto.Usuario
+import zg.augusto.Usuario.Roles
+import zg.augusto.dominio.enums.RolesUsuario
 
 class BootStrap {
 
     def init = { servletContext ->
-        def alguem = new Usuario(
-            nome: 'João',
-            cpf: '600.043.680-70',
-            dataNascimento: new Date(97, 8, 27),
-            senha: '012345',
-            salario: 10_000.0,
-            papel: RolesFuncionario.ADMIN,
-        )
+        if (Environment.getCurrent() == Environment.DEVELOPMENT) {
+            def userRole = SecRole.findByAuthority('ROLE_USER') ?:
+                new SecRole(authority: 'ROLE_USER').save(failOnError: true)
 
-        alguem.save()
+            def adminRole = SecRole.findByAuthority('ROLE_ADMIN') ?:
+                new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true)
 
-        def registroFoo = new Registro(usuario: alguem)
-        registroFoo.save()
 
-        sleep(1000)
+            def ana = new Usuario(
+                username: 'ana',
+                password: 'ana',
+                enabled: true,
 
-        def registroBar = new Registro(usuario: alguem)
-        registroBar.save()
+                nome: 'Ana',
+                cpf: '600.043.680-70',
+                dataNascimento: new Date(90, 6, 27),
+                salario: 10_000.0,
+            ).save(failOnError: true)
 
-        sleep(1000)
+            SecUserSecRole.create(ana, adminRole)
+            SecUserSecRole.create(ana, userRole)
 
-        def registroQuux = new Registro(usuario: alguem)
-        registroQuux.save()
+
+            def bob = new Usuario(
+                username: 'bob',
+                password: 'bob',
+                enabled: true,
+
+                nome: 'Bob',
+                cpf: '200.927.400-81',
+                dataNascimento: new Date(98, 12, 8),
+                salario: 8_000.0,
+            ).save(failOnError: true)
+
+            SecUserSecRole.create(bob, userRole)
+
+            new Registro(usuario: bob).save(failOnError: true)
+            sleep(1000)
+
+            new Registro(usuario: bob).save(failOnError: true)
+            sleep(1000)
+
+            new Registro(usuario: bob).save(failOnError: true)
+        }
     }
 
     def destroy = {

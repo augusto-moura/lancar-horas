@@ -1,7 +1,10 @@
 package zg.augusto
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class RequisicoesMudancaRegistroController {
 
+    @Secured(['ROLE_USER'])
     def 'exibir-requisicao-mudancas-ponto'() {
         def id = params.id
 

@@ -1,7 +1,10 @@
 package zg.augusto
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class UsuariosController {
 
+    @Secured(['ROLE_ADMIN'])
     def listar() {
         def nome = params.buscarNome
         return [
