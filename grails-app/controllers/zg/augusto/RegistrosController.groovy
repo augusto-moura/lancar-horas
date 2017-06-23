@@ -2,13 +2,15 @@ package zg.augusto
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.userdetails.GrailsUser
 import org.joda.time.LocalDateTime
 import org.springframework.http.HttpStatus
 import zg.augusto.dominio.enums.RolesUsuario
 
 class RegistrosController {
 
-    RegistrosService registrosService
+    def registrosService
+    def springSecurityService
 
     @Secured(['ROLE_ADMIN'])
     def usuario() {
@@ -54,6 +56,7 @@ class RegistrosController {
         if (registro.hasErrors()) {
             flash.errors = registro.errors
             redirect(action: 'exibir-edicao', id: id)
+            return
         }
 
         flash.success = ['Edição realizada com sucesso!']
@@ -67,9 +70,13 @@ class RegistrosController {
 
     @Secured(['ROLE_USER'])
     def 'bater-ponto'() {
-        def usuarioAtual = Usuario.get(1)
+        def grailsuser = springSecurityService.principal as GrailsUser
+        def usuarioAtual = Usuario.get(grailsuser.id as Long)
+
         registrosService.baterPonto(usuarioAtual)
-        redirect(url: '/')
+
+        flash.success = ['Ponto registrado com sucesso!']
+        render(view: '/home')
     }
 
     @Secured(['ROLE_USER'])

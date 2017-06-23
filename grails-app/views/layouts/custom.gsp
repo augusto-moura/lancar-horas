@@ -9,8 +9,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title><g:layoutTitle default="Principal"/> - Lançar Horas</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
-	<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
 	<asset:stylesheet src="application.css"/>
 	<asset:javascript src="application.js"/>
 	<g:layoutHead/>
@@ -24,14 +22,16 @@
 		</div>
 
 		<ul class="nav navbar-nav">
-			<li><g:link controller="usuarios" action="listar" class="zg-link">Usuários</g:link></li>
+			<sec:ifAllGranted roles="ROLE_ADMIN">
+				<li><g:link controller="usuarios" action="listar" class="zg-link">Usuários</g:link></li>
+			</sec:ifAllGranted>
 			<li><g:link controller="registros" action="exibir-bater-ponto" class="zg-link">Bater ponto</g:link></li>
 			<li><g:link controller="requisicoesMudancaRegistro" action="exibir-requisicao-mudancas-ponto" class="zg-link">Requisições de mudança de ponto</g:link></li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href=""><i class="glyphicon glyphicon-wrench"></i> Configurações</a></li>
-			<li><g:link controller="logout"><i class="glyphicon glyphicon-off"></i> Sair</g:link></li>
+			<li><g:link controller="logout"><i class="glyphicon glyphicon-off"></i> Sair (<sec:username/>)</g:link></li>
 		</ul>
 	</div>
 </nav>
