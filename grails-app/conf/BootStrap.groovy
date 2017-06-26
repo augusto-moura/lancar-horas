@@ -1,5 +1,7 @@
 import grails.util.Environment
+import org.joda.time.LocalDateTime
 import zg.augusto.Registro
+import zg.augusto.RequisicaoAlteracaoRegistro
 import zg.augusto.SecUserSecRole
 import zg.augusto.SecRole
 import zg.augusto.Usuario
@@ -31,6 +33,13 @@ class BootStrap {
             SecUserSecRole.create(ana, adminRole)
             SecUserSecRole.create(ana, userRole)
 
+            def registroFoo = new Registro(usuario: ana).save(failOnError: true)
+
+            new RequisicaoAlteracaoRegistro(
+                registro: registroFoo,
+                dataMudanca: new LocalDateTime(registroFoo.dataMarcada).plusHours(1).toDate(),
+                justificativa: 'Sou um pouco burro',
+            ).save(failOnError: true)
 
             def bob = new Usuario(
                 username: 'bob',

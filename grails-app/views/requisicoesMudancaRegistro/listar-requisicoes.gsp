@@ -48,12 +48,8 @@
 					</g:else>
 				</td>
 				<td class="text-center">
-					<g:link controller="requisicoesMudancaRegistro" action="aceitar-requisicao" id="${it.id}">
-						<i class="glyphicon glyphicon-ok" title="Aceitar solicitação de mudança de ponto"></i>
-					</g:link>
-					<g:link controller="requisicoesMudancaRegistro" action="recusar-requisicao" id="${it.id}">
-						<i class="glyphicon glyphicon-remove" title="Rejeitar solicitação de mudança de ponto"></i>
-					</g:link>
+					<g:link controller="requisicoesMudancaRegistro" action="aceitar-requisicao" id="${it.id}"><i class="glyphicon glyphicon-ok" title="Aceitar solicitação de mudança de ponto"></i></g:link>
+					<g:link controller="requisicoesMudancaRegistro" action="recusar-requisicao" id="${it.id}"><i class="glyphicon glyphicon-remove" title="Rejeitar solicitação de mudança de ponto"></i></g:link>
 				</td>
 			</tr>
 		</g:each>
