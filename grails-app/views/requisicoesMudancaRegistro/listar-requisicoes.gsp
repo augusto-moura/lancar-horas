@@ -40,19 +40,18 @@
 				<td class="text-nowrap">${it.dataMudanca}</td>
 				<td>
 					<g:if test="${it.justificativa.size() >= 100}">
-						${it.justificativa.substring(0, 100)}
+						${it.justificativa.substring(0, 100)}<span class="zg-expand-text hide">${it.justificativa.substring(101)}</span>
 						<div class="zg-expand-link"><a href="javascript: void 0" title="Mostrar mais">mais...</a></div>
-						<span class="zg-expand-text hide">${it.justificativa.substring(101)}</span>
 					</g:if>
 					<g:else>
 						${it.justificativa}
 					</g:else>
 				</td>
 				<td class="text-center">
-					<g:link controller="requisicoesMudancaRegistro" action="exibir-nova-requisicao" id="${it.id}">
+					<g:link controller="requisicoesMudancaRegistro" action="aceitar-requisicao" id="${it.id}">
 						<i class="glyphicon glyphicon-ok" title="Aceitar solicitação de mudança de ponto"></i>
 					</g:link>
-					<g:link controller="requisicoesMudancaRegistro" action="exibir-nova-requisicao" id="${it.id}">
+					<g:link controller="requisicoesMudancaRegistro" action="recusar-requisicao" id="${it.id}">
 						<i class="glyphicon glyphicon-remove" title="Rejeitar solicitação de mudança de ponto"></i>
 					</g:link>
 				</td>

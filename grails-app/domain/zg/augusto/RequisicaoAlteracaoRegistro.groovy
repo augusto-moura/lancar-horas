@@ -20,9 +20,9 @@ class RequisicaoAlteracaoRegistro {
     String justificativa
     Registro registro
     Date dataMudanca
-    StatusSolicitacao status = StatusSolicitacao.PENDENTE
+    Status status = Status.PENDENTE
 
-    static enum StatusSolicitacao {
+    static enum Status {
         PENDENTE, RECUSADA, ACEITA
     }
 

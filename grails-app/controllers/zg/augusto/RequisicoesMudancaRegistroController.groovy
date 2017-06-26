@@ -33,7 +33,35 @@ class RequisicoesMudancaRegistroController {
 
     @Secured(['ROLE_ADMIN'])
     def 'listar-requisicoes'() {
-        return [requisicoes: RequisicaoAlteracaoRegistro.findAll()]
+        return [requisicoes: RequisicaoAlteracaoRegistro.findAllByStatus(RequisicaoAlteracaoRegistro.Status.PENDENTE)]
+    }
+
+    @Secured(['ROLE_ADMIN'])
+    def 'aceitar-requisicao'() {
+        def entidade = RequisicaoAlteracaoRegistro.get(params.id as Long)
+
+        if (entidade) {
+            flash.success = ['Requisição aceita com sucesso!']
+            requisacaoAlteracaoRegistroService.aceitarRequisicao(entidade)
+        } else {
+            flash.errors = ['Entidade não encontrada']
+        }
+
+        redirect(action: 'listar-requisicoes')
+    }
+
+    @Secured(['ROLE_ADMIN'])
+    def 'recusar-requisicao'() {
+        def entidade = RequisicaoAlteracaoRegistro.get(params.id as Long)
+
+        if (entidade) {
+            flash.success = ['Requisição rejeitada com sucesso!']
+            requisacaoAlteracaoRegistroService.recusarRequisicao(entidade)
+        } else {
+            flash.errors = ['Entidade não encontrada']
+        }
+
+        redirect(action: 'listar-requisicoes')
     }
 
 }
