@@ -3,7 +3,11 @@
 
 	<nav>
 		<ul class="pagination no-margin-top">
-			<li><a href="javascript: void 0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			<li>
+				<g:link controller="${controller}" action="${action}" params="${params + [offset: 0]}">
+					&laquo;
+				</g:link>
+			</li>
 
 			<g:each in="${(1..nPaginas)}">
 				<g:set var="offsetPagina" value="${(it - 1) * max}"/>
@@ -13,7 +17,11 @@
 				</li>
 			</g:each>
 
-			<li><a href="javascript: void 0" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+			<li>
+				<g:link controller="${controller}" action="${action}" params="${params + [offset: ((nPaginas - 1) * max) as Integer]}">
+					&raquo;
+				</g:link>
+			</li>
 		</ul>
 	</nav>
 </g:if>
