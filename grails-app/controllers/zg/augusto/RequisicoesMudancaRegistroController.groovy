@@ -5,6 +5,8 @@ import org.joda.time.DateTime
 
 class RequisicoesMudancaRegistroController {
 
+    static MAX_USUARIOS_PER_PAGE = 10
+
     def requisacaoAlteracaoRegistroService
 
     @Secured(['ROLE_USER'])
@@ -16,15 +18,16 @@ class RequisicoesMudancaRegistroController {
 
     @Secured(['ROLE_USER'])
     def 'nova-requisicao'() {
-        def requisicao = requisacaoAlteracaoRegistroService.novaRequisicao(
-            Registro.load(params.id as Long),
-            new DateTime(params.dataMudanca as String).toDate(),
-            params.justificativa as String,
+        def requisicao = new RequisicaoAlteracaoRegistro(
+            registro: Registro.load(params.id as Long),
+            dataMudanca: new DateTime(params.dataMudanca as String).toDate(),
+            justificativa: params.justificativa as String
         )
 
-        if (requisicao.hasErrors()) {
+        if (!requisicao.validate()) {
             flash.errors = requisicao.errors
         } else {
+            requisacaoAlteracaoRegistroService.novaRequisicao(requisicao)
             flash.success = ['Solicitação criada com sucesso!']
         }
 
@@ -33,7 +36,21 @@ class RequisicoesMudancaRegistroController {
 
     @Secured(['ROLE_ADMIN'])
     def 'listar-requisicoes'() {
-        return [requisicoes: RequisicaoAlteracaoRegistro.findAllByStatus(RequisicaoAlteracaoRegistro.Status.PENDENTE)]
+        def max = Math.max(0, (params.max ?: 10) as Integer)
+        def offset = Math.max(0, (params.offset ?: 0) as Integer)
+        def total = RequisicaoAlteracaoRegistro.countByStatus(RequisicaoAlteracaoRegistro.Status.PENDENTE)
+
+        return [
+            requisicoes: RequisicaoAlteracaoRegistro.withCriteria {
+                eq("status", RequisicaoAlteracaoRegistro.Status.PENDENTE)
+
+                maxResults max
+                firstResult offset
+            },
+            total: total,
+            max: max,
+            offset: offset,
+        ]
     }
 
     @Secured(['ROLE_ADMIN'])

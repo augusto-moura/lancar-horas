@@ -1,3 +1,4 @@
+<%@ page import="zg.augusto.RequisicoesMudancaRegistroController" %>
 <!DOCTYPE html>
 <html>
 
@@ -56,6 +57,8 @@
 		</tbody>
 	</table>
 </div>
+
+<zg:pagination max="${RequisicoesMudancaRegistroController.MAX_USUARIOS_PER_PAGE}" total="${total}" offsetatual="${params.offset}" controller="requisicoesMudancaRegistro" action="listar-requisicoes" />
 
 <script>
     $(() => {
