@@ -12,24 +12,25 @@
 <g:form class="form-inline spacing-bottom">
 	<div class="form-group">
 		<label for="input-buscar-nome">Buscar por nome:</label>
-		<g:textField class="form-control" id="input-buscar-nome" name="buscarNome" value="${nomeBuscado}" />
+		<g:textField class="form-control" id="input-buscar-nome" name="buscarNome" value="${nomeBuscado}"/>
 	</div>
 
 	<button class="btn btn-primary" type="submit">Buscar</button>
 </g:form>
 
-<table class="table table-striped table-hover table-bordered">
-	<thead>
-	<tr>
-		<th>Nome</th>
-		<th>CPF</th>
-		<th>Salário</th>
-		<th>Data nascimento</th>
-		<th>Ações</th>
-	</tr>
-	</thead>
+<div class="table-responsive">
+	<table class="table table-striped table-hover table-bordered">
+		<thead>
+		<tr>
+			<th>Nome</th>
+			<th>CPF</th>
+			<th>Salário</th>
+			<th>Data nascimento</th>
+			<th>Ações</th>
+		</tr>
+		</thead>
 
-	<tbody>
+		<tbody>
 		<g:if test="${resultado.size() < 1}">
 			<tr><td colspan="5">Nenhum resultado encontrado</td></tr>
 		</g:if>
@@ -49,8 +50,9 @@
 				</td>
 			</tr>
 		</g:each>
-	</tbody>
-</table>
+		</tbody>
+	</table>
+</div>
 </body>
 
 </html>

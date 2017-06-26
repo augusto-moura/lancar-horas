@@ -28,7 +28,7 @@ class RequisicoesMudancaRegistroController {
             flash.success = ['Solicitação criada com sucesso!']
         }
 
-        redirect(controller: 'registros', action: 'meus-registros')
+        redirect(action: 'listar-requisicoes')
     }
 
     @Secured(['ROLE_ADMIN'])

@@ -12,57 +12,62 @@
 </head>
 
 <body>
-<h4 class="spacing-bottom">Meus Registros</h4>
+<h4 class="spacing-bottom">Todas requisições</h4>
 
-<table class="table table-striped table-hover table-bordered tabela-listar-requisicoes">
-	<thead>
-	<tr class="text-nowrap">
-		<th>Usuario</th>
-		<th>Data Original</th>
-		<th>Data Requisitada</th>
-		<th style="width: 100%">Justificativa</th>
-		<th>Ações</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	<g:if test="${!requisicoes}">
-		<tr>
-			<td colspan="4">Nenhum resultado encontrado</td>
+<div class="table-responsive">
+	<table class="table table-striped table-hover table-bordered tabela-listar-requisicoes">
+		<thead>
+		<tr class="text-nowrap">
+			<th>Usuário</th>
+			<th>Data Original</th>
+			<th>Data Solicitada</th>
+			<th style="width: 100%">Justificativa</th>
+			<th>Ações</th>
 		</tr>
-	</g:if>
+		</thead>
 
-	<g:each in="${requisicoes}">
-		<tr>
-			<td>${it.registro.usuario.nome}</td>
-			<td class="text-nowrap">${it.registro.dataMarcada}</td>
-			<td class="text-nowrap">${it.dataMudanca}</td>
-			<td>
-				<g:if test="${it.justificativa.size() >= 100}">
-					${it.justificativa.substring(0, 100)}
-					<a class="zg-expand-link" href="javascript: void 0">...</a>
-					<span class="zg-expand-text hide">${it.justificativa.substring(101)}</span>
-				</g:if>
-				<g:else>
-					${it.justificativa}
-				</g:else>
-			</td>
-			<td class="text-center">
-				<g:link controller="requisicoesMudancaRegistro" action="exibir-nova-requisicao" id="${it.id}">
-					<i class="glyphicon glyphicon-file" title="Solicitar edição de ponto"></i>
-				</g:link>
-			</td>
-		</tr>
-	</g:each>
-	</tbody>
-</table>
+		<tbody>
+		<g:if test="${!requisicoes}">
+			<tr>
+				<td colspan="5">Nenhum resultado encontrado</td>
+			</tr>
+		</g:if>
+
+		<g:each in="${requisicoes}">
+			<tr>
+				<td class="text-center">${it.registro.usuario.nome}</td>
+				<td class="text-nowrap">${it.registro.dataMarcada}</td>
+				<td class="text-nowrap">${it.dataMudanca}</td>
+				<td>
+					<g:if test="${it.justificativa.size() >= 100}">
+						${it.justificativa.substring(0, 100)}
+						<div class="zg-expand-link"><a href="javascript: void 0" title="Mostrar mais">mais...</a></div>
+						<span class="zg-expand-text hide">${it.justificativa.substring(101)}</span>
+					</g:if>
+					<g:else>
+						${it.justificativa}
+					</g:else>
+				</td>
+				<td class="text-center">
+					<g:link controller="requisicoesMudancaRegistro" action="exibir-nova-requisicao" id="${it.id}">
+						<i class="glyphicon glyphicon-ok" title="Aceitar solicitação de mudança de ponto"></i>
+					</g:link>
+					<g:link controller="requisicoesMudancaRegistro" action="exibir-nova-requisicao" id="${it.id}">
+						<i class="glyphicon glyphicon-remove" title="Rejeitar solicitação de mudança de ponto"></i>
+					</g:link>
+				</td>
+			</tr>
+		</g:each>
+		</tbody>
+	</table>
+</div>
 
 <script>
     $(() => {
         $('.zg-expand-link').on('click', function () {
             const $this = $(this);
 
-            $this.sibling('.zg-expand-text').removeClass('hide')
+            $this.siblings('.zg-expand-text').removeClass('hide');
             $this.remove();
         });
     });
