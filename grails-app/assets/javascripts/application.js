@@ -8,3 +8,8 @@
 //= require jquery
 //= require_tree .
 //= require_self
+
+
+$(() => {
+    $('.zg-datepicker').find('select').addClass('form-control');
+});

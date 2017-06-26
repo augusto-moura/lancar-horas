@@ -14,7 +14,7 @@
 		<thead>
 		<tr>
 			<th>Data Criação Inicial</th>
-			<th>Data Registrada</th>
+			<th>Data Marcação</th>
 			<th>Ações</th>
 		</tr>
 		</thead>

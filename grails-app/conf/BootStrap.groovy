@@ -28,6 +28,7 @@ class BootStrap {
                 cpf: '600.043.680-70',
                 dataNascimento: new Date(90, 6, 27),
                 salario: 10_000.0,
+                cargaHorariaDiaria: 8,
             ).save(failOnError: true)
 
             SecUserSecRole.create(ana, adminRole)
@@ -50,6 +51,7 @@ class BootStrap {
                 cpf: '200.927.400-81',
                 dataNascimento: new Date(98, 12, 8),
                 salario: 8_000.0,
+                cargaHorariaDiaria: 8,
             ).save(failOnError: true)
 
             SecUserSecRole.create(bob, userRole)

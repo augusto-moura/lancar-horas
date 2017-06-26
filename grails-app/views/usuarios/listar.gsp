@@ -38,7 +38,7 @@
 			<tr>
 				<td>${it.nome}</td>
 				<td>${it.cpf}</td>
-				<td>R$ ${it.salarioFormatado}</td>
+				<td><g:formatNumber number="${it.salario}" type="currency" currencyCode="BRL" /></td>
 				<td>${it.dataNascimento}</td>
 				<td class="text-center">
 					<g:link controller="registros" action="usuario" id="${it.id}">
@@ -53,6 +53,8 @@
 		</tbody>
 	</table>
 </div>
+
+<g:link action="exibir-cadastrar-novo" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Cadastrar novo</g:link>
 </body>
 
 </html>

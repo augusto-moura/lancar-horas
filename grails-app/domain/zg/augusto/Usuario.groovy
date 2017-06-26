@@ -1,8 +1,5 @@
 package zg.augusto
 
-import groovy.transform.CompileStatic
-import zg.augusto.dominio.enums.RolesFuncionario
-
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
@@ -17,15 +14,17 @@ class Usuario extends SecUser {
         cpf matches: /\d{3}\.\d{3}\.\d{3}-\d{2}/, validator: {
             return isCPFValido(it.replaceAll(/[.-]/, ''))
         }
+        nome blank: false
+        cpf blank: false
+        salario nullable: false
+        dataNascimento nullable: false
+        cargaHorariaDiaria nullable: false
     }
 
     static mapping = {
         table 'USUARIOS'
         version false
 
-        nome blank: false
-        cpf blank: false
-        salario nullable: false
         registros lazy: false
     }
 
@@ -33,6 +32,7 @@ class Usuario extends SecUser {
     String cpf
     Date dataNascimento
     BigDecimal salario
+    Long cargaHorariaDiaria
 
     String getSalarioFormatado() {
         return FORMATO_SALARIO.format(salario)
