@@ -1,3 +1,4 @@
+<%@ page import="zg.augusto.RegistrosController" %>
 <!DOCTYPE html>
 <html>
 
@@ -40,4 +41,6 @@
 		</tbody>
 	</table>
 </div>
+
+<zg:pagination max="${RegistrosController.MAX_USUARIOS_PER_PAGE}" total="${total}" offsetatual="${params.offset}" controller="registros" action="meus-registros" />
 </body>

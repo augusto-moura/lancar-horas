@@ -5,9 +5,10 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.userdetails.GrailsUser
 import org.joda.time.LocalDateTime
 import org.springframework.http.HttpStatus
-import zg.augusto.dominio.enums.RolesUsuario
 
 class RegistrosController {
+
+    static MAX_USUARIOS_PER_PAGE = 10
 
     def registrosService
     def springSecurityService
@@ -86,14 +87,28 @@ class RegistrosController {
     @Secured(['ROLE_USER'])
     def 'meus-registros'() {
         def grailsuser = springSecurityService.principal as GrailsUser
+        def max = Math.max(0, (params.max ?: 10) as Integer)
+        def offset = Math.max(0, (params.offset ?: 0) as Integer)
+        def total = Registro.withCriteria {
+            eq 'usuario.id', (grailsuser.id as Long)
+            projections {
+                rowCount()
+            }
+        }
+
 
         def resultado = Registro.withCriteria {
             eq 'usuario.id', (grailsuser.id as Long)
+
+            maxResults max
+            firstResult offset
         }
 
         return [
             registros: resultado,
             idUsuario: grailsuser.id,
+            total: total[0],
+            max: max,
         ]
     }
 

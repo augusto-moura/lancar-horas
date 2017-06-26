@@ -12,7 +12,7 @@
 			<g:each in="${(1..nPaginas)}">
 				<g:set var="offsetPagina" value="${(it - 1) * max}"/>
 
-				<li class="${(offsetatual as int) == (offsetPagina as int) ? 'active' : ''}">
+				<li class="${((offsetatual ?: 0) as int) == (offsetPagina as int) ? 'active' : ''}">
 					<g:link controller="${controller}" action="${action}" params="${params + [offset: offsetPagina]}">${it}</g:link>
 				</li>
 			</g:each>
