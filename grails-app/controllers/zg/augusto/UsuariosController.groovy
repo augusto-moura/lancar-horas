@@ -4,22 +4,32 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class UsuariosController {
 
+    static MAX_USUARIOS_PER_PAGE = 10
+
     def usuariosService
 
     @Secured(['ROLE_ADMIN'])
     def listar() {
         def nome = params.buscarNome
-        def max = Math.max(0, params.max ?: 0)
-        def offset = Math.max(0, params.max ?: 0)
+        def max = Math.max(0, (params.max ?: 10) as Integer)
+        def offset = Math.max(0, (params.offset ?: 0) as Integer)
+        def total = Usuario.withCriteria {
+            if (nome) ilike "nome", "%$nome%"
+            projections {
+                rowCount()
+            }
+        }
 
         return [
             resultado: Usuario.withCriteria {
-                if (nome) ilike "nome","%$nome%"
+                if (nome) ilike "nome", "%$nome%"
 
                 firstResult offset
                 maxResults max
             },
             nomeBuscado: nome,
+            total: total[0],
+            max: max,
         ]
     }
 
