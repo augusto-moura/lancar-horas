@@ -10,7 +10,7 @@
 <body>
 <h4 class="spacing-bottom">Todos usuários</h4>
 
-<g:form class="form-inline spacing-bottom">
+<g:form class="form-inline spacing-bottom" action="listar" params="${params.remove('buscarNome')}">
 	<div class="form-group">
 		<label for="input-buscar-nome">Buscar por nome:</label>
 		<g:textField class="form-control" id="input-buscar-nome" name="buscarNome" value="${nomeBuscado}"/>
@@ -55,7 +55,7 @@
 	</table>
 </div>
 
-<zg:pagination max="${UsuariosController.MAX_USUARIOS_PER_PAGE}" total="${total}" controller="usuarios" action="listar" />
+<zg:pagination max="${UsuariosController.MAX_USUARIOS_PER_PAGE}" total="${total}" offsetatual="${params.offset}" controller="usuarios" action="listar" />
 
 <g:link action="exibir-cadastrar-novo" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Cadastrar novo</g:link>
 </body>

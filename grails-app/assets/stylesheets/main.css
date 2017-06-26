@@ -25,3 +25,7 @@ main.zg-principal {
 .align-middle {
     vertical-align: middle;
 }
+
+.no-margin-top {
+    margin-top: 0;
+}
