@@ -1,5 +1,6 @@
 package zg.augusto.estrategias.bonussalarial
 
+import org.joda.time.DateTimeConstants
 import org.joda.time.Duration
 import org.joda.time.LocalDate
 import zg.augusto.relatorios.Jornada
@@ -16,7 +17,7 @@ class BonusHoraExtraFeriado implements BonusSalarial {
 
     @Override
     Double horasComBonus(List<Jornada> jornadas) {
-        if (datasFeriado.any { jornadas[0]?.entrada?.toLocalDate() == it }) {
+        if (isFeriadoFinalDeSemana(jornadas[0]) || datasFeriado.any { jornadas[0]?.entrada?.toLocalDate() == it }) {
             def milisJornadas = jornadas.collect { new Duration(it.entrada, it.saida).getMillis() }.sum()
             return milisJornadas / MILIS_IN_HOUR
         }
@@ -27,5 +28,10 @@ class BonusHoraExtraFeriado implements BonusSalarial {
     @Override
     Double maximoDeBonus(List<Jornada> jornadas) {
         return horasComBonus(jornadas) * MULTIPLICADOR
+    }
+
+    static private Boolean isFeriadoFinalDeSemana(Jornada jornada) {
+        return jornada.entrada.getDayOfWeek() == DateTimeConstants.SATURDAY ||
+            jornada.entrada.getDayOfWeek() == DateTimeConstants.SUNDAY
     }
 }
