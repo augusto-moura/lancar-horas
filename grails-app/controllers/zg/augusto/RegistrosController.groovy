@@ -62,7 +62,7 @@ class RegistrosController {
         }
 
         flash.success = ['Edição realizada com sucesso!']
-        render(view: 'exibir-edicao', model: [entidade: registro])
+        redirect(action: 'usuario', id: registro.usuario.id)
     }
 
     @Secured(['ROLE_ADMIN'])
@@ -83,6 +83,11 @@ class RegistrosController {
 
     @Secured(['ROLE_USER'])
     def 'exibir-bater-ponto'() {}
+
+    @Secured(['ROLE_REGISTRADOR'])
+    def 'pontos'(Registro registro) {
+        render(registro.save() as JSON)
+    }
 
     @Secured(['ROLE_USER'])
     def 'meus-registros'() {

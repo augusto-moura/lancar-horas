@@ -1,6 +1,6 @@
 package zg.augusto
 
-class ZgTaglibTagLib {
+class ZgTaglib {
 
     static namespace = "zg"
 

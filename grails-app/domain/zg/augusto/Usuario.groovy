@@ -67,4 +67,8 @@ class Usuario extends SecUser {
         return cpf == (cpf.substring(0,9) + digito1.toString() + digito2.toString())
     }
 
+    Double calcularValorHora() {
+        return salario / (cargaHorariaDiaria * 30)
+    }
+
 }

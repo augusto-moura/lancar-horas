@@ -24,6 +24,7 @@
 		<ul class="nav navbar-nav">
 			<li><g:link controller="registros" action="exibir-bater-ponto" class="zg-link">Bater ponto</g:link></li>
 			<li><g:link controller="registros" action="meus-registros" class="zg-link">Minhas marcações</g:link></li>
+			<li><g:link controller="relatorios" action="meu-relatorio" class="zg-link">Meu relatório</g:link></li>
 			<sec:ifAllGranted roles="ROLE_ADMIN">
 				<li><g:link controller="usuarios" action="listar" class="zg-link">Usuários</g:link></li>
 				<li>

@@ -1,12 +1,7 @@
 import grails.util.Environment
+import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
-import zg.augusto.Registro
-import zg.augusto.RequisicaoAlteracaoRegistro
-import zg.augusto.SecUserSecRole
-import zg.augusto.SecRole
-import zg.augusto.Usuario
-import zg.augusto.Usuario.Roles
-import zg.augusto.dominio.enums.RolesUsuario
+import zg.augusto.*
 
 class BootStrap {
 
@@ -17,6 +12,8 @@ class BootStrap {
 
             def adminRole = SecRole.findByAuthority('ROLE_ADMIN') ?:
                 new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true)
+
+            def natal = new Feriado(data: new LocalDate(2017, 12, 25)).save(failOnError: true)
 
 
             def ana = new Usuario(
